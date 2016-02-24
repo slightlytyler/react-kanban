@@ -2,7 +2,6 @@ import webpack from 'webpack'
 import cssnano from 'cssnano'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import DecoratorPlugin from 'babel-plugin-transform-decorators-legacy';
 import config from '../config'
 import _debug from 'debug'
 

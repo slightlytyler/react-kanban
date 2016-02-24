@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
-import counter from 'pods/counter/reducers';
+import schema from 'schema';
 
 export default combineReducers({
-  counter,
   router,
+  orm: schema.reducer(),
 });

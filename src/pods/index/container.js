@@ -1,7 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { increment, doubleAsync } from 'pods/counter/actions';
 import Layout from './layout';
 
 function mapStateToProps(state) {
@@ -12,8 +11,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    increment,
-    doubleAsync,
   }, dispatch);
 }
 
