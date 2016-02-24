@@ -16,7 +16,17 @@ export default class LaneCreator extends React.Component {
     title: '',
   };
 
-  submit = () => this.props.createLane(this.state.title);
+  submit = () => {
+    const { title } = this.state;
+
+    this.clear();
+
+    if (!title) {
+      return;
+    }
+
+    return this.props.createLane(title);
+  }
 
   clear = () => {
     this.setState({

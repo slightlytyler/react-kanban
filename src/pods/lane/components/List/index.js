@@ -9,25 +9,21 @@ import LaneCreator from 'pods/lane/components/Creator';
 @cssModules(styles)
 class LaneList extends React.Component {
   static propTypes = {
-    lanes: PropTypes.array,
-  };
-
-  static defaultProps = {
-    lanes: [],
+    laneIds: PropTypes.array,
   };
 
   render() {
-    const { lanes } = this.props;
+    const { laneIds } = this.props;
 
     return (
       <div>
         <header>
         </header>
         {
-          lanes.map(lane => (
+          laneIds.map(id => (
             <LaneItem
-              key={lane}
-              id={lane}
+              key={id}
+              id={id}
             />
           ))
         }
@@ -39,7 +35,7 @@ class LaneList extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    lanes: state.orm.Lane.items,
+    laneIds: state.orm.Lane.items,
   };
 }
 
