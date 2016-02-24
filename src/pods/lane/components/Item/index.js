@@ -1,18 +1,16 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { PropTypes, Component } from 'react';
 import cssModules from 'react-css-modules';
 
 import styles from './styles.styl';
 
 @cssModules(styles)
-class LaneItem extends React.Component {
+export default class LaneItem extends Component {
   static propTypes = {
-    id: PropTypes.number.isRequired,
-    lane: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
   };
 
   render() {
-    const { title } = this.props.lane;
+    const { title } = this.props;
 
     return (
       <div>
@@ -24,21 +22,9 @@ class LaneItem extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    lanesById: state.orm.Lane.itemsById,
-  };
-}
-
-function mergeProps(stateProps, dispatchProps, ownProps) {
-  return {
-    ...ownProps,
-    lane: stateProps.lanesById[ownProps.id],
-  };
-}
+import { connect } from 'react-redux';
+import { selectors } from 'pods/lanes/provider';
 
 export default connect(
-  mapStateToProps,
-  () => ({}),
-  mergeProps,
+  (state, props) => selectors.findLaneById(state, props)
 )(LaneItem);

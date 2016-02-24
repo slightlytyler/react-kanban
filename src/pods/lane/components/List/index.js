@@ -1,5 +1,4 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { PropTypes, Component } from 'react';
 import cssModules from 'react-css-modules';
 
 import styles from './styles.styl';
@@ -7,20 +6,20 @@ import LaneItem from 'pods/lane/components/Item';
 import LaneCreator from 'pods/lane/components/Creator';
 
 @cssModules(styles)
-class LaneList extends React.Component {
+class LaneList extends Component {
   static propTypes = {
-    laneIds: PropTypes.array,
+    lanes: PropTypes.array.isRequired,
   };
 
   render() {
-    const { laneIds } = this.props;
+    const { lanes } = this.props;
 
     return (
       <div>
         <header>
         </header>
         {
-          laneIds.map(id => (
+          lanes.map(id => (
             <LaneItem
               key={id}
               id={id}
@@ -33,10 +32,10 @@ class LaneList extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    laneIds: state.orm.Lane.items,
-  };
-}
 
-export default connect(mapStateToProps)(LaneList);
+import { connect } from 'react-redux';
+import { selectors } from 'pods/lanes/provider';
+
+export default connect(
+  state => ({ lanes: selectors.lanesSelector(state) })
+)(LaneList);

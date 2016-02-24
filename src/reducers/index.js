@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
-import schema from 'schema';
+import { reducers as lanes } from 'pods/lanes/provider';
 
 export default combineReducers({
   router,
-  orm: schema.reducer(),
+  lanes,
 });

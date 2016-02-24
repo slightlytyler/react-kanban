@@ -1,13 +1,10 @@
-import React, { PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { PropTypes, Component } from 'react';
 import cssModules from 'react-css-modules';
 
 import styles from './styles.styl';
-import { actions } from 'pods/lane/model';
 
 @cssModules(styles)
-export default class LaneCreator extends React.Component {
+export default class LaneCreator extends Component {
   static propTypes = {
     createLane: PropTypes.func.isRequired,
   };
@@ -19,13 +16,12 @@ export default class LaneCreator extends React.Component {
   submit = () => {
     const { title } = this.state;
 
-    this.clear();
-
     if (!title) {
       return;
     }
 
-    return this.props.createLane(title);
+    this.props.createLane(title);
+    this.clear();
   }
 
   clear = () => {
@@ -49,10 +45,13 @@ export default class LaneCreator extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    createLane: actions.createLane,
-  }, dispatch);
-}
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actions } from 'pods/lanes/provider';
 
-export default connect(() => ({}), mapDispatchToProps)(LaneCreator);
+const { createLane } = actions;
+
+export default connect(
+  undefined,
+  dispatch => bindActionCreators({ createLane }, dispatch)
+)(LaneCreator);
