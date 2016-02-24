@@ -26,5 +26,5 @@ import { connect } from 'react-redux';
 import { selectors } from 'pods/lanes/provider';
 
 export default connect(
-  (state, props) => selectors.findLaneById(state, props)
+  (state, props) => selectors.findLaneById(state, props.id)
 )(LaneItem);

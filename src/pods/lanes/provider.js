@@ -51,11 +51,10 @@ import { createSelector } from 'reselect';
 
 const lanesSelector = state => state.lanes.records;
 const lanesByIdSelector = state => state.lanes.recordsById;
-const currentIdSelector = (state, props) => props.id;
 
 const findLaneById = createSelector(
   lanesByIdSelector,
-  currentIdSelector,
+  (state, id) => id,
   (lanesById, id) => lanesById[id],
 );
 
