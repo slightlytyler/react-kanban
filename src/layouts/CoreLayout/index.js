@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
-import './styles.scss';
+import cssModules from 'react-css-modules';
+import styles from './styles.styl';
 
 function CoreLayout({ children }) {
   return (
-    <div className="page-container">
-      <div className="view-container">
-        {children}
-      </div>
+    <div styleName="page-container">
+      {children}
     </div>
   );
 }
@@ -15,4 +14,4 @@ CoreLayout.propTypes = {
   children: PropTypes.element,
 };
 
-export default CoreLayout;
+export default cssModules(CoreLayout, styles);

@@ -2,6 +2,7 @@ import webpack from 'webpack'
 import cssnano from 'cssnano'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import DecoratorPlugin from 'babel-plugin-transform-decorators-legacy';
 import config from '../config'
 import _debug from 'debug'
 
@@ -110,7 +111,7 @@ webpackConfig.module.loaders = [{
   loader: 'babel',
   query: {
     cacheDirectory: true,
-    plugins: ['transform-runtime'],
+    plugins: ['transform-runtime', 'transform-decorators-legacy'],
     presets: ['es2015', 'react', 'stage-0'],
     env: {
       development: {
@@ -146,13 +147,13 @@ const cssLoader = !config.compiler_css_modules
   ].join('&')
 
 webpackConfig.module.loaders.push({
-  test: /\.scss$/,
+  test: /\.styl$/,
   include: /src/,
   loaders: [
     'style',
     cssLoader,
     'postcss',
-    'sass?sourceMap'
+    'stylus?sourceMap'
   ]
 })
 
@@ -168,13 +169,13 @@ webpackConfig.module.loaders.push({
 
 // Don't treat global SCSS as modules
 webpackConfig.module.loaders.push({
-  test: /\.scss$/,
+  test: /\.styl$/,
   exclude: /src/,
   loaders: [
     'style',
     'css?sourceMap',
     'postcss',
-    'sass?sourceMap'
+    'stylus?sourceMap'
   ]
 })
 

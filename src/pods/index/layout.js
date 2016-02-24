@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
+import cssModules from 'react-css-modules';
 import DuckImage from 'assets/Duck.jpg';
-import classes from './styles.scss';
+import styles from './styles.styl';
 
+@cssModules(styles)
 export default class IndexLayout extends React.Component {
   static propTypes = {
     counter: PropTypes.number.isRequired,
@@ -18,7 +20,7 @@ export default class IndexLayout extends React.Component {
       <div className="container text-center">
         <div className="row">
           <div className="col-xs-2 col-xs-offset-5">
-            <img className={classes.duck}
+            <img styleName="duck"
               src={DuckImage}
               alt="This is a duck, because Redux."
             />
@@ -28,7 +30,7 @@ export default class IndexLayout extends React.Component {
         <h2>
           Sample Counter:
           {' '}
-          <span className={classes['counter--green']}>{this.props.counter}</span>
+          <span styleName="counter--green">{this.props.counter}</span>
         </h2>
         <button className="btn btn-default" onClick={this.incrementByOne}>
           Increment
