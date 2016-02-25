@@ -7,15 +7,17 @@ import styles from './styles.styl';
 class LaneItem extends Component {
   static propTypes = {
     lane: PropTypes.object.isRequired,
+    deleteLane: PropTypes.func.isRequired,
   };
 
-  render() {
-    const { title } = this.props.lane;
+  delete = () => this.props.deleteLane(this.props.lane.id);
 
+  render() {
     return (
       <div>
         <header>
-          <div>{title}</div>
+          <div>{this.props.lane.title}</div>
+          <button onClick={this.delete}>x</button>
         </header>
       </div>
     );
