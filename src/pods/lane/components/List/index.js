@@ -22,7 +22,7 @@ class LaneList extends Component {
           lanes.map(id => (
             <LaneItem
               key={id}
-              id={id}
+              laneKey={id}
             />
           ))
         }
@@ -33,9 +33,7 @@ class LaneList extends Component {
 }
 
 
-import { connect } from 'react-redux';
-import { selectors } from 'pods/lanes/provider';
+import { provide } from 'containers/provide';
+import lanesProvider from 'pods/lanes/provider';
 
-export default connect(
-  state => ({ lanes: selectors.lanesSelector(state) })
-)(LaneList);
+export default provide(lanesProvider)(LaneList);

@@ -4,14 +4,14 @@ import cssModules from 'react-css-modules';
 import styles from './styles.styl';
 
 @cssModules(styles)
-export default class LaneItem extends Component {
+class LaneItem extends Component {
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    lane: PropTypes.object.isRequired,
   };
 
   render() {
-    const { title } = this.props;
-
+    const { title } = this.props.lane;
+    console.log(this.props);
     return (
       <div>
         <header>
@@ -22,9 +22,7 @@ export default class LaneItem extends Component {
   }
 }
 
-import { connect } from 'react-redux';
-import { selectors } from 'pods/lanes/provider';
+import { provide } from 'containers/provide';
+import lanesProvider from 'pods/lanes/provider';
 
-export default connect(
-  (state, props) => selectors.findLaneById(state, props.id)
-)(LaneItem);
+export default provide(lanesProvider)(LaneItem);

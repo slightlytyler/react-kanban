@@ -4,7 +4,7 @@ import cssModules from 'react-css-modules';
 import styles from './styles.styl';
 
 @cssModules(styles)
-export default class LaneCreator extends Component {
+class LaneCreator extends Component {
   static propTypes = {
     createLane: PropTypes.func.isRequired,
   };
@@ -45,13 +45,7 @@ export default class LaneCreator extends Component {
   }
 }
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { actions } from 'pods/lanes/provider';
+import { provide } from 'containers/provide';
+import lanesProvider from 'pods/lanes/provider';
 
-const { createLane } = actions;
-
-export default connect(
-  undefined,
-  dispatch => bindActionCreators({ createLane }, dispatch)
-)(LaneCreator);
+export default provide(lanesProvider)(LaneCreator);

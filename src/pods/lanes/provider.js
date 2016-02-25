@@ -1,5 +1,13 @@
+import { createProvider } from 'containers/provide';
+
+const lanes = createProvider('lanes', 'lane', 'laneKey');
+
 // Constants
-export const CREATE_LANE = 'CREATE_LANE';
+const CREATE_LANE = 'CREATE_LANE';
+
+export const constants = {
+  CREATE_LANE,
+};
 
 // Actions
 import generateId from 'shortid';
@@ -63,3 +71,10 @@ export const selectors = {
   lanesByIdSelector,
   findLaneById,
 };
+
+lanes.constants = constants;
+lanes.actions = actions;
+lanes.reducers = reducers;
+lanes.selectors = selectors;
+
+export default lanes;
