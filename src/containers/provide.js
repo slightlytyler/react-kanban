@@ -1,4 +1,5 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   keys,
@@ -61,7 +62,16 @@ export function provide(provider, merge) {
 
       return mappedStateProps;
     };
-    const mapDispatchToProps = dispatch => ({});
+
+    const mapDispatchToProps = dispatch => (
+      bindActionCreators(
+        zipObject(
+          requestedDispatchProps,
+          map(requestedDispatchProps, prop => provider.actions[prop])
+        ),
+        dispatch
+      )
+    );
 
     class WrappedComponent extends Component {
       static propTypes = {};

@@ -11,7 +11,7 @@ class LaneItem extends Component {
 
   render() {
     const { title } = this.props.lane;
-    console.log(this.props);
+
     return (
       <div>
         <header>
