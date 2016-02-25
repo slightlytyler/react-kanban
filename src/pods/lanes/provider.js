@@ -1,7 +1,3 @@
-import { createProvider } from 'containers/provide';
-
-const lanes = createProvider('lanes', 'lane', 'laneKey');
-
 // Constants
 const CREATE_LANE = 'CREATE_LANE';
 
@@ -71,6 +67,11 @@ export const selectors = {
   lanesByIdSelector,
   findLaneById,
 };
+
+// Provider
+import { createProvider } from 'react-redux-provide-pattern';
+
+const lanes = createProvider('lanes', 'lane', 'laneKey');
 
 lanes.constants = constants;
 lanes.actions = actions;

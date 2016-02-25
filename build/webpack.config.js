@@ -1,4 +1,5 @@
 import webpack from 'webpack'
+import path from 'path'
 import cssnano from 'cssnano'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
@@ -92,6 +93,7 @@ if (!__TEST__) {
 webpackConfig.module.preLoaders = [{
   test: /\.(js|jsx)$/,
   loader: 'eslint',
+  include: paths.base(config.dir_client),
   exclude: /node_modules/
 }]
 
@@ -106,6 +108,7 @@ webpackConfig.eslint = {
 // JavaScript / JSON
 webpackConfig.module.loaders = [{
   test: /\.(js|jsx)$/,
+  include: paths.base(config.dir_client),
   exclude: /node_modules/,
   loader: 'babel',
   query: {

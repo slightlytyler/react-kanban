@@ -22,7 +22,7 @@ class LaneItem extends Component {
   }
 }
 
-import { provide } from 'containers/provide';
+import { provide } from 'react-redux-provide-pattern';
 import lanesProvider from 'pods/lanes/provider';
 
 export default provide(lanesProvider)(LaneItem);
